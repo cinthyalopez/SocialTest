@@ -1,0 +1,8 @@
+<Alloy>
+	<Window id="window" class="container">
+		<Button class="button" id="facebook">Facebook</Button>
+		<Button id="fblogout">FB logout</Button>
+		<Button class="button" id="twitter">Twitter</Button>
+		<Button class="button" id="google">Google</Button>
+	</Window>
+</Alloy>
