@@ -8,7 +8,7 @@ $.fblogout.addEventListener("click", facebookLogout);
 
 $.twitter.addEventListener("click", twitterAuth);
 
-$.google.addEventListener("click", googleAuth);
+$.google.addEventListener("click", gAuth);
 
 
 
@@ -62,7 +62,7 @@ function twitterAuth(){
 	});
 }
 
-function googleAuth(){
+function gAuth(){
 	var GoogleAuth = require('googleAuth');
 	var googleAuth = new GoogleAuth({
 	    clientId : '597936831104.apps.googleusercontent.com',
@@ -70,16 +70,25 @@ function googleAuth(){
 	    propertyName : 'googleToken',
 	    scope : ['https://www.googleapis.com/auth/tasks', 'https://www.googleapis.com/auth/tasks.readonly']
 	});
-	 googleAuth.isAuthorized(function() {
-        Ti.API.info('Access Token: ' + googleAuth.getAccessToken());
-        //user is authorized so do something... just dont forget to add accessToken to your requests
+	//  googleAuth.isAuthorized(function() {
+ //        Ti.API.info('Access Token: ' + googleAuth.getAccessToken());
+ //        //user is authorized so do something... just dont forget to add accessToken to your requests
 
-    }, function() {
-        //authorize first
-        googleAuth.authorize();
-        Ti.API.info('auth::::::::::::::::::::::::::::::::::::::::::');
-    });	
-	 Ti.API.info('Access Token: ' + googleAuth.getAccessToken());
+ //    }, function() {
+ //        //authorize first
+ //        googleAuth.authorize();
+ //        Ti.API.info('auth::::::::::::::::::::::::::::::::::::::::::');
+ //    });
+
+    Ti.API.info('Authorized: ' + googleAuth.isAuthorized());
+	googleAuth.isAuthorized(function() {
+		Ti.API.info('Access Token: ' + googleAuth.getAccessToken());
+		// table.setData([]);
+		
+	}, function() {
+		Ti.API.info('Authorize google account...');
+		googleAuth.authorize();
+	});
 }
 
 
