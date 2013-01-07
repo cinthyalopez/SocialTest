@@ -2,14 +2,6 @@ function doClick(e) {
     alert($.label.text);
 }
 
-// var GoogleAuth = require('googleAuth');
-// 	var googleAuth = new GoogleAuth({
-// 	    clientId : '597936831104.apps.googleusercontent.com',
-// 	    clientSecret : 'w3n3w88IwExfUvyUgQH7YQbc',
-// 	    propertyName : 'googleToken',
-// 	    scope : ['https://www.googleapis.com/auth/tasks', 'https://www.googleapis.com/auth/tasks.readonly']
-// });
-
 $.facebook.addEventListener("click", facebookAuth);
 
 $.fblogout.addEventListener("click", facebookLogout);
@@ -54,6 +46,7 @@ function twitterAuth(){
 	client.addEventListener('login', function(e) {
 	  if (e.success) {
 	    // Your app code goes here... you'll likely want to save the access tokens passed in the event.
+	    Ti.API.info(':::::::::::::::User access token:::::::::::::::');
 	    Ti.API.info(e);
 	    // Here's an example API call:
 	    client.request("1/statuses/home_timeline.json", {count: 100}, 'GET', function(e) {
@@ -68,23 +61,6 @@ function twitterAuth(){
 	  }
 	});
 }
-
-var sync = Ti.UI.createButton({
-    title : 'Sync'
-});
-//do some action...
-sync.addEventListener('click', function() {
-    googleAuth.isAuthorized(function() {
-        Ti.API.info('Access Token: ' + googleAuth.getAccessToken());
-        //user is authorized so do something... just dont forget to add accessToken to your requests
-
-    }, function() {
-        //authorize first
-        googleAuth.authorize();
-    });
-});
-
-$.window.add(sync);
 
 function googleAuth(){
 	var GoogleAuth = require('googleAuth');
